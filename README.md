@@ -11,7 +11,8 @@ kaggle ის competition: Walmart Recruiting - Store Sales Forecasting
 რეპოზიტორიის სტრუქტურა:
     experiments ფოლდერში მოცემულია სხვადასხვა მოდელის ექსპერიმენტები, რომლებშიც კარგად ჩანს სხვადასხვა მიდგომებისა და მოდელების გატესტვის მცდელობა.
 
-    model_experiment_XGBoost: 
+model_experiment_XGBoost: 
+    
     საწყისი მოდელია, რომელშიც ძალიან basic feature-ებია და ჰიპერპარამეტრების ოპტიმიზაციასაც დიდი მნიშვნელობა არ ჰქონდა. 
     პარამეტრები და მეტრიკები ასე გამოიყურება:
         model = XGBRegressor(
@@ -33,7 +34,9 @@ kaggle ის competition: Walmart Recruiting - Store Sales Forecasting
             Mean Valid RMSE: 6330.36
             Mean Valid WMAE: 3659.47
 
-    model_experiment_xgboost2 ში დავამატე feature ები, როგორიცაა: Year, Month, Week, Day, DayOfWeek, PrevYearSales ამათი დამატებით მოდელის პერფორმანსი საგრძნობლად გაუმჯობესდა. 
+model_experiment_xgboost2:
+
+    ში დავამატე feature ები, როგორიცაა: Year, Month, Week, Day, DayOfWeek, PrevYearSales ამათი დამატებით მოდელის პერფორმანსი საგრძნობლად გაუმჯობესდა. 
         model = XGBRegressor(
             n_estimators=400,
             max_depth=7,
@@ -49,7 +52,9 @@ kaggle ის competition: Walmart Recruiting - Store Sales Forecasting
             Mean Valid WMAE: 2448.34
         კაგელზე საბმიშენი: დაახლოებით 3745
 
-    model_experiment_xgboost3 ში დავამატე fourier feature ები, isWeekBefore{Holiday}, isWeekAfter{Holiday} და ჰიპერპარამეტრები დავატუნინგე, რის შედეგადაც მოდელის პერფორმანსი უფრო მეტად გაუმჯობესდა.
+model_experiment_xgboost3:
+
+    ში დავამატე fourier feature ები, isWeekBefore{Holiday}, isWeekAfter{Holiday} და ჰიპერპარამეტრები დავატუნინგე, რის შედეგადაც მოდელის პერფორმანსი უფრო მეტად გაუმჯობესდა.
     საუკეთესო მოდელი დალოგილია dagshub-ზე: https://dagshub.com/Givi-Modebadze/Final_Project_ML.mlflow/#/experiments/0
 
         model = XGBRegressor(
@@ -67,7 +72,9 @@ kaggle ის competition: Walmart Recruiting - Store Sales Forecasting
             Mean Valid WMAE: 2167.41
         კაგელზე საბმიშენი: დაახლოებით 3280
 
-    model_experiment_TFT ში მოცემულია Temporal Fusion Transformer არქიტექტურა, რომელიც გასამართად საკმაოდ რთული აღმოჩნდა, ამიტომ მხოლოდ basic არქიტექტურაა. ასევე საკმაოდ დიდი დრო სჭირდებოდა სრულ მონაცემებზე ტრენინგს ამიტომ პირველი რიგში პერფორმანსის შესამოწმებლად მხოლოდ პირველ მაღაზიაზე გავტესტე. ვალიდაციაზე შედეგები ასე გამოიყურებოდა:
+model_experiment_TFT:
+
+    ში მოცემულია Temporal Fusion Transformer არქიტექტურა, რომელიც გასამართად საკმაოდ რთული აღმოჩნდა, ამიტომ მხოლოდ basic არქიტექტურაა. ასევე საკმაოდ დიდი დრო სჭირდებოდა სრულ მონაცემებზე ტრენინგს ამიტომ პირველი რიგში პერფორმანსის შესამოწმებლად მხოლოდ პირველ მაღაზიაზე გავტესტე. ვალიდაციაზე შედეგები ასე გამოიყურებოდა:
         MAE: 20366.52
         RMSE: 28377.04
         WMAE: 20366.52
