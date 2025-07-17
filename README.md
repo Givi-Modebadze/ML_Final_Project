@@ -142,4 +142,7 @@ lightGBM:
         Mean Train WMAE: 2113.45
         Mean Valid RMSE: 3723.63
         Mean Valid WMAE: 1971.56
+    kaggle-ზე დაიდო ეს შედეგი:
+        Score: 3476.58238
+        Private score: 3544.26638
     
