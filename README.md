@@ -97,7 +97,7 @@ random_forest:
         Mean Train WMAE: 621.21
         Mean Valid RMSE: 4112.44
         Mean Valid WMAE: 1905.06
-    კეგლზე საბმიშენი: 6825
+    კეგლზე საბმიშენი: 4365
 
 old_lightGBM:
 
