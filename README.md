@@ -92,9 +92,54 @@ random_forest:
         n_jobs=-1
     )
     
-    აქ ვცადე მეპოვა კარგი ჰიპერპარამეტრები და overfit-ის თავიდან ასაცილებლად ამ მოდელმა კარგად იმუშავა. უმეტესად 3ივე run-ის შედეგი მსგავსი იყო და ყველაზე კარგმა ეს დადო:
+    აქ ვცადე მეპოვა კარგი ჰიპერპარამეტრები overfit-ის თავიდან ასაცილებლად ამ მოდელმა კარგად იმუშავა. უმეტესად 3ივე run-ის შედეგი მსგავსი იყო და ყველაზე კარგმა ეს დადო:
         Mean Train RMSE: 1450.62
         Mean Train WMAE: 621.21
         Mean Valid RMSE: 4112.44
         Mean Valid WMAE: 1905.06
     კეგლზე საბმიშენი: 6825
+
+old_lightGBM:
+
+    აქ მანამდე დავიწყე მუშაობა, სანამ გადავწყვიტავდით, თუ როგორ უნდა გაგვეყო მონაცემები და feature engineering როგორ უნდა გაგვეკეთებინა. აქედან გამომდინარე მარტივი შესამჩნევია, რომ საეჭვოდ კარგი შედეგები დადო თვითონ notebook-ში. ამ პარამეტრებით:
+        'objective': 'regression',
+        'metric': 'mae',
+        'boosting_type': 'gbdt',
+        'num_leaves': 31,
+        'learning_rate': 0.05,
+        'feature_fraction': 0.9,
+        'bagging_fraction': 0.8,
+        'bagging_freq': 5,
+        'verbose': -1,
+        'random_state': 42,
+        'reg_alpha': 0.1,
+        'reg_lambda': 0.1
+    
+    დადო ეს შედეგი:
+        Mean Train RMSE: 3383.45
+        Mean Train WMAE: 1776.05
+        Mean Valid RMSE: 2946.82
+        Mean Valid WMAE: 1530.10
+    აქ იმითაც კი ჩანს, რომ კარგი შედეგი არ არის, რომ ვალიდაციაზე უკეთესი შედეგი დადო ვიდრე თრეინინგზე(kaggle-ზე დადო 19820 რაც აბსურდულია). ამას შემდეგ ფაილში გამოვასწორებ.
+
+lightGBM:
+
+    აქ უკვე დავამატე feature engineering და ვცადე underfit გამომესწორებინა learning rate-ის, num_leaves-ისა და feature_fraction-ის გაზრდით. ამან სასურველ შედეგს მიაღწია. შემდეგი პარამეტრებით:
+        'objective': 'regression',
+        'metric': 'mae',
+        'boosting_type': 'gbdt',
+        'num_leaves': 150,
+        'learning_rate': 0.15,
+        'feature_fraction': 1,
+        'bagging_fraction': 0.8,
+        'bagging_freq': 5,
+        'verbose': -1,
+        'random_state': 42,
+        'reg_alpha': 0.2,
+        'reg_lambda': 0.2
+    მივიღე ეს შედეგი:
+        Mean Train RMSE: 1793.44
+        Mean Train WMAE: 2113.45
+        Mean Valid RMSE: 3723.63
+        Mean Valid WMAE: 1971.56
+    
