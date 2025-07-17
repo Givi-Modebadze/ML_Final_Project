@@ -166,3 +166,62 @@ DLinear:
         Mean Train WMAE: 9872.55
         Mean Valid RMSE: 6850.76
         Mean Valid WMAE: 5413.62
+
+model_experiment_PatchTST: 
+
+    ეს მოდელი გასამართად საკმაოდ რთული აღმოჩნდა, თუმცა შესაბამისი ბიბლიოთეკების დაყენებით საბოლოოდ არც ისე დიდი კოდი გამოვიდა. 
+    ბასიქ მოდელმაც კი ძალიან კარგი შედეგი აჩვენა ყოველგვარი პრეპროცესინგის და feature engineering ის გარეშე უბრალოდ NeuralForecast გამოვიყენე და ვრაპერი დავუწერე. 
+    კარგი შედეგის გამო მაქსიმალურად დავატუნინგე ჰიპერპარამეტრები, რითაც საბოლოოდ ასეთი შედეგი მივიღეთ:
+    
+        model = PatchTST(
+            h=60,
+            input_size=52,
+            patch_len=16,
+            batch_size=64,
+            stride=4,
+            n_heads=8,
+            dropout=0.1,
+            max_steps=5000,
+            learning_rate=0.0005,
+            activation='relu',
+            enable_progress_bar=True
+        )
+    ვალიდაციაზე შედეგები:
+        WMAE: 2581.45
+        RMSE: 5966.96
+    კაგლზე შედეგები:
+        private score: 2777.38
+        public score: 2695.34
+    mlflow link:
+        https://dagshub.com/Givi-Modebadze/Final_Project_ML.mlflow/#/experiments/1
+
+model_experiment_NBEATS:
+
+    ეს მოდელიც საკმაოდ რთული იყო გამოსაყენებლად, მაგრამ NeuralForecast-მა აქაც გვიშველა და იგივე ვრაპერი გამოვიყენე აქაც რაც წინა მოდელში. 
+    ამასაც კარგი შედეგები ჰქონდა და ამიტომ დავატუნინგე ჰიპერპარამეტრები მაქსიმალურად. საბოლოოდ მივიღეთ ეს მოდელი:
+    
+        model = NBEATS(
+            h=60,
+            input_size=52,
+            max_steps=4000,
+            learning_rate=0.0005,
+            stack_types=['trend', 'seasonality'],
+            n_blocks = [2,2],
+            mlp_units=[[256, 256], [256, 256]],
+            activation='LeakyReLU',
+        )
+        
+    ვალიდაციაზე შედეგები:
+        WMAE: 2682.76
+        RMSE: 6073.24
+    კაგლზე შედეგები:
+        private score: 2848.49
+        public score: 2763.07
+    mlflow link:
+        https://dagshub.com/Givi-Modebadze/Final_Project_ML.mlflow/#/experiments/2
+        
+model_inference:
+
+    ამ ფაილში ვაგენერირებთ ტესტ სეტზე საბმიშენს საუკეთესო მოდელის გამოყენებით. 
+    საუკეთესო მოდელად შერჩა PatchTST. 
+    
